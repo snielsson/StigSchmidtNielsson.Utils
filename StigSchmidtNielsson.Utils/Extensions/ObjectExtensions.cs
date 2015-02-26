@@ -25,7 +25,7 @@ namespace StigSchmidtNielsson.Utils.Extensions {
         /// <param name="obj">The object to compare.</param>
         /// <param name="other">The other object compare.</param>
         /// <returns>True if the objects JSON representations are equal.</returns>
-        public static bool AreJsonEqual<T>(this T obj, T other) {
+        public static bool IsJsonEqualTo<T>(this T obj, T other) {
             if (ReferenceEquals(obj, other)) return true;
             if (obj.GetType() != other.GetType()) return false;
             return JSON.Serialize(obj, _jilCloneOptions) == JSON.Serialize(other, _jilCloneOptions);

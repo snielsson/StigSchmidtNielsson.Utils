@@ -14,7 +14,6 @@ namespace StigSchmidtNielsson.Utils.Extensions {
         public static DateTime RoundToTimeSpanStart(this DateTime @this, long timeSpanTicks, int numberOfPeriodsToRoundTo = 0) {
             return new DateTime(timeSpanTicks*(@this.Ticks/timeSpanTicks + numberOfPeriodsToRoundTo));
         }
-
         /// <summary>
         /// Returns a new DateTime which is the given DateTime rounded down to the nearest whole TimeSpan period.
         /// </summary>
@@ -25,7 +24,6 @@ namespace StigSchmidtNielsson.Utils.Extensions {
         public static DateTime RoundToTimeSpanEnd(this DateTime @this, long timeSpanTicks, int numberOfPeriodsToRoundTo = 0) {
             return RoundToTimeSpanStart(@this, timeSpanTicks, 1 + numberOfPeriodsToRoundTo);
         }
-
         /// <summary>
         /// Returns a new DateTime which is the given DateTime rounded down to the nearest whole TimeSpan period.
         /// </summary>
@@ -36,7 +34,6 @@ namespace StigSchmidtNielsson.Utils.Extensions {
         public static DateTime RoundToTimeSpanEnd(this DateTime @this, TimeSpan period, int numberOfPeriodsToRoundTo = 0) {
             return RoundToTimeSpanStart(@this, period.Ticks, 1 + numberOfPeriodsToRoundTo);
         }
-
         /// <summary>
         /// Returns a new DateTime which is the given DateTime rounded down to the nearest whole TimeSpan period.
         /// </summary>
@@ -47,9 +44,7 @@ namespace StigSchmidtNielsson.Utils.Extensions {
         public static DateTime RoundToTimeSpanStart(this DateTime @this, TimeSpan period, int numberOfPeriodsToRoundTo = 0) {
             return RoundToTimeSpanStart(@this, period.Ticks, numberOfPeriodsToRoundTo);
         }
-
         public static readonly DateTime EPOCH = new DateTime(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc);
-
         /// <summary>
         /// Returns true if the given DateTime is in the future. The method to determine the value of 'now' can be customized, but defaults to System.DateTime.UtcNow.
         /// </summary>
@@ -60,7 +55,6 @@ namespace StigSchmidtNielsson.Utils.Extensions {
             var now = getNow == null ? DateTime.UtcNow : getNow();
             return @this.Ticks > now.Ticks;
         }
-
         /// <summary>
         /// Returns true if the given DateTime is in the past. The method to determine the value of 'now' can be customized, but defaults to System.DateTime.UtcNow.
         /// </summary>
@@ -71,7 +65,6 @@ namespace StigSchmidtNielsson.Utils.Extensions {
             var now = getNow == null ? DateTime.UtcNow : getNow();
             return @this.Ticks < now.Ticks;
         }
-
         /// <summary>
         /// Returns the given DateTime converted to the number of seconds elapsed since the EPOCH of January the 1st. 1970.
         /// </summary>
@@ -80,7 +73,6 @@ namespace StigSchmidtNielsson.Utils.Extensions {
         public static int ToUnixTime(this DateTime @this) {
             return (int) (@this - EPOCH).TotalSeconds;
         }
-
         /// <summary>
         /// Converts the Unix time (number of elapsed seconds since January 1st. 1970) to a DateTime with kind Utc.
         /// </summary>
@@ -89,7 +81,6 @@ namespace StigSchmidtNielsson.Utils.Extensions {
         public static DateTime FromUnixTime(this int @this) {
             return EPOCH.AddSeconds(@this);
         }
-
         /// <summary>
         /// Returns the given DateTime converted to the number of seconds elapsed since the EPOCH of January the 1st. 1970.
         /// </summary>
@@ -98,7 +89,6 @@ namespace StigSchmidtNielsson.Utils.Extensions {
         public static long ToUnixTimeMs(this DateTime @this) {
             return (long) (@this - EPOCH).TotalMilliseconds;
         }
-
         /// <summary>
         /// Converts the Unix time with millisecond resolution (number of elapsed milliseconds since January 1st. 1970) to a DateTime with kind Utc.
         /// </summary>

@@ -7,7 +7,6 @@ namespace StigSchmidtNielsson.Utils.Test.Extensions {
         private DateTime _localDateTime = new DateTime(2015, 1, 1, 1, 1, 1, 1, DateTimeKind.Local);
         private DateTime _utcDateTime = new DateTime(2015, 1, 1, 1, 1, 1, 1, DateTimeKind.Utc);
         private DateTime _unspecifiedDateTime = new DateTime(2015, 1, 1, 1, 1, 1, 1, DateTimeKind.Unspecified);
-
         [Fact]
         public void RoundToTimeSpanStartWorks() {
             Assert.Equal(new DateTime(2015, 1, 1, 1, 0, 0, 0), _dateTime.RoundToTimeSpanStart(TimeSpan.FromHours(1)));
@@ -42,7 +41,6 @@ namespace StigSchmidtNielsson.Utils.Test.Extensions {
             Assert.Equal(new DateTime(2015, 1, 1, 1, 0, 0, 0, DateTimeKind.Utc), _utcDateTime.RoundToTimeSpanEnd(TimeSpan.FromHours(1), -1));
             Assert.Equal(new DateTime(2015, 1, 1, 1, 0, 0, 0, DateTimeKind.Unspecified), _unspecifiedDateTime.RoundToTimeSpanEnd(TimeSpan.FromHours(1), -1));
         }
-
         [Fact]
         public void IsInTheFutureWorks() {
             var lastYear = DateTime.Now.AddYears(-1);
@@ -54,7 +52,6 @@ namespace StigSchmidtNielsson.Utils.Test.Extensions {
             Assert.False(lastYear.IsInTheFuture(() => lastYear));
             Assert.False(nextYear.IsInTheFuture(() => nextYear));
         }
-
         [Fact]
         public void IsInThePastWorks() {
             var lastYear = DateTime.Now.AddYears(-1);

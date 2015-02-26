@@ -30,5 +30,17 @@ namespace StigSchmidtNielsson.Utils.Extensions {
             return tmp;
         }
 
+        /// <summary>
+        /// Gets the last element of the array.
+        /// </summary>
+        /// <typeparam name="T">Type of the array elements.</typeparam>
+        /// <param name="this">The array to get element from.</param>
+        /// <param name="throwOnEmpty">If false(default), default value of elements type is returned otherwise an InvalidOperationException is thrown.</param>
+        /// <returns>The last element or the default value of the array element type.</returns>
+        public static T Last<T>(this T[] @this, bool throwOnEmpty = false) {
+            var length = @this.Length;
+            if (length == 0 && throwOnEmpty) throw new InvalidOperationException("Array is empty");
+            return length == 0 ? default(T) : @this[length - 1];
+        }
     }
 }

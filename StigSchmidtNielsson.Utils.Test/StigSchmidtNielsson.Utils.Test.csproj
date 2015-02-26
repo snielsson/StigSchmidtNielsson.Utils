@@ -32,6 +32,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Ploeh.AutoFixture">
+      <HintPath>..\packages\AutoFixture.3.24.0\lib\net40\Ploeh.AutoFixture.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -45,8 +48,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Extensions\ArrayExtensionsTests.cs" />
+    <Compile Include="Extensions\AssemblyExtensionsTests.cs" />
     <Compile Include="Extensions\DateTimeExtensionsTests.cs" />
+    <Compile Include="Extensions\ExceptionExtensionsTests.cs" />
+    <Compile Include="Extensions\NameValueCollectionExtensionsTests.cs" />
     <Compile Include="Extensions\ObjectExtensionsTests.cs" />
+    <Compile Include="Extensions\StringExtensionsTests.cs" />
+    <Compile Include="TestBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

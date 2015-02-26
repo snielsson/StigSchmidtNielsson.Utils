@@ -1,7 +1,9 @@
+using System.IO;
+using System.Text;
 using StigSchmidtNielsson.Utils.Extensions;
 using Xunit;
 namespace StigSchmidtNielsson.Utils.Test.Extensions {
-    public class ObjectExtensionsTests {
+    public class ObjectExtensionsTests : TestBase {
         private class A {
             public B B { get; set; }
             public C C { get; set; }
@@ -39,6 +41,17 @@ namespace StigSchmidtNielsson.Utils.Test.Extensions {
             public string Name { get; set; }
         }
 
+        private DerivedFromA CreateA() {
+            var a = new DerivedFromA();
+            a.Name = Create<string>();
+            a.B = new B {
+                NestedInBProp = {
+                    Name = Create<string>()
+                }
+            };
+            a.C = new C();
+            return a;
+        }
 
         [Fact]
         public void CloneWorks() {
@@ -49,12 +62,37 @@ namespace StigSchmidtNielsson.Utils.Test.Extensions {
             var someObjClone = someObj.Clone();
             Assert.False(someObj.Equals(someObjClone));
             Assert.False(ReferenceEquals(someObj, someObjClone));
+
+            var a = CreateA();
+            var aClone = a.Clone();
+            Assert.False(ReferenceEquals(a, aClone));
+            var aJson = a.ToPrettyJson();
+            var aCloneJson = aClone.ToPrettyJson();
+            Assert.Equal(aJson, aCloneJson);
+        }
+
+        [Fact]
+        public void ToJsonWorks() {
+            var a = CreateA();
+            var json = a.ToJson();
+            Assert.True(json.Contains(a.Name));
+            Assert.True(json.Contains(a.B.NestedInBProp.Name));
         }
         [Fact]
-        public void ToJsonWorks() {}
+        public void ToPrettyJsonWorks() {
+            var a = CreateA();
+            var json = a.ToPrettyJson();
+            Assert.True(json.Contains(a.Name));
+            Assert.True(json.Contains(a.B.NestedInBProp.Name));
+        }
         [Fact]
-        public void ToPrettyJsonWorks() {}
-        [Fact]
-        public void DumpWorks() {}
+        public void DumpWorks() {
+            var sb = new StringBuilder();
+            TextWriter textWriter = new StringWriter(sb);
+            var a = CreateA();
+            a.Dump(textWriter);
+            var str = sb.ToString();
+            Assert.True(str.Contains(a.Name));
+        }
     }
 }
